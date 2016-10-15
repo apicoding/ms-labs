@@ -7,18 +7,26 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Random;
+
 @Configuration
 @EnableAutoConfiguration
 @EnableDiscoveryClient
 @RestController
-public class Application {
+public class UserServiceApplication {
+
+    private static final Random random = new Random();
+
+    private static int idMs;
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        idMs = random.nextInt();
+        SpringApplication.run(UserServiceApplication.class, args);
     }
 
     @RequestMapping("/")
     public String home() {
+        System.err.println("Dans mon micro service " + idMs);
         return "Hello World";
     }
 
