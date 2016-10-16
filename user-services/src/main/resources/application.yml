@@ -1,11 +1,15 @@
 server:
-  port: 8181
+  port: 8183
 
 spring:
 
   application:
     name: user-services
-
   cloud:
-    zookeeper:
-      connect-string: 192.168.99.100:2181
+    cluster:
+      zookeeper:
+        leader:
+          enabled: true
+        connect: 192.168.99.100:2181
+      leader:
+        enabled: true

@@ -19,6 +19,7 @@ public class UserServiceApplication {
 
     private static int idMs;
 
+
     public static void main(String[] args) {
         idMs = random.nextInt();
         SpringApplication.run(UserServiceApplication.class, args);
@@ -27,7 +28,7 @@ public class UserServiceApplication {
     @RequestMapping("/")
     public String home() {
         System.err.println("Dans mon micro service " + idMs);
-        return "Hello World";
+        return "Hello World " + idMs;
     }
 
 }

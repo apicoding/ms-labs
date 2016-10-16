@@ -1,4 +1,4 @@
-package org.apicoding.labs.ms.web;
+package org.apicoding.labs.ms;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
