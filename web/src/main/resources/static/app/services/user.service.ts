@@ -1,19 +1,20 @@
 import {Injectable} from "@angular/core";
 import {Http, Response} from "@angular/http";
-import {DavisCup} from "./../model/davisCup";
+import {User} from "./../model/user";
 import {Observable} from "rxjs/Observable";
 import "rxjs/Rx";
 
 @Injectable()
-export class DavisCupService {
+export class UserService {
 
     constructor(private http: Http) {
     }
 
-    private _davisUrl = 'http://localhost:8080/result_list';  // URL to web api
-    getDavisCups() {
-        return this.http.get(this._davisUrl)
-            .map(res => <DavisCup[]> res.json())
+    private _serviceUrl = '/user/findAll';  // URL to web api
+
+    findAll() {
+        return this.http.get(this._serviceUrl)
+            .map(res => <User[]> res.json())
             .catch(this.handleError);
     }
 

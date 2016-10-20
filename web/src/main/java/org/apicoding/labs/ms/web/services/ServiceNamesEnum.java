@@ -1,4 +1,4 @@
-package org.apicoding.labs.ms.web.rest;
+package org.apicoding.labs.ms.web.services;
 
 /**
  * Created by Nous on 15/10/2016.
