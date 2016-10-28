@@ -6,12 +6,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableAutoConfiguration
 @ComponentScan
+@EnableSwagger2
 @EnableFeignClients
 public class WebApplication {
 

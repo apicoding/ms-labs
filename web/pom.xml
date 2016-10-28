@@ -22,9 +22,97 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <springfox-version>2.6.0</springfox-version>
+        <swagger-core-version>1.5.10</swagger-core-version>
+        <jackson-version>2.4.2</jackson-version>
+        <jodatime-version>2.3</jodatime-version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-codegen</artifactId>
+            <version>2.2.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.2.2</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-core</artifactId>
+            <version>${swagger-core-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+
+        <!-- JSON processing: jackson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-joda</artifactId>
+            <version>2.1.5</version>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${jodatime-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.7</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>2.7.5</version>
+        </dependency>
+
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -75,70 +163,65 @@
 
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>com.github.eirslett</groupId>
-                <artifactId>frontend-maven-plugin</artifactId>
-                <version>1.0</version>
+                <groupId>com.github.kongchen</groupId>
+                <artifactId>swagger-maven-plugin</artifactId>
+                <configuration>
+                    <apiSources>
+                        <apiSource>
+                            <springmvc>true</springmvc>
+                            <locations>org.apicoding.labs.ms.web.web.rest</locations>
+                            <schemes>http,https</schemes>
+                            <host>localhost:8080</host>
+                            <basePath>/</basePath>
+                            <info>
+                                <title>Gateway</title>
+                                <version>1.0.0</version>
+                                <description>Passerelle microservice</description>
+                            </info>
+                            <swaggerDirectory>src/main/resources/api/</swaggerDirectory>
+                            <modelConverters>io.swagger.validator.BeanValidator</modelConverters>
+                        </apiSource>
+                    </apiSources>
+                </configuration>
                 <executions>
                     <execution>
-                        <id>install node and npm</id>
+                        <phase>compile</phase>
                         <goals>
-                            <goal>install-node-and-npm</goal>
+                            <goal>generate</goal>
                         </goals>
-                        <configuration>
-                            <nodeVersion>v4.4.7</nodeVersion>
-                            <npmVersion>3.10.5</npmVersion>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>npm install</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-                        <!-- Optional configuration which provides for running any npm command -->
-                        <configuration>
-                            <arguments>install</arguments>
-                        </configuration>
                     </execution>
                 </executions>
+                <dependencies>
+                    <!-- Adding dependency to swagger-hibernate-validations to enable the BeanValidator as a custom
+                         model converter -->
+                    <dependency>
+                        <groupId>io.swagger</groupId>
+                        <artifactId>swagger-hibernate-validations</artifactId>
+                        <version>1.5.6</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-codegen-maven-plugin</artifactId>
+                <version>2.2.1</version>
                 <executions>
                     <execution>
-                        <id>exec-npm-install</id>
-                        <phase>generate-sources</phase>
-                        <configuration>
-                            <workingDirectory>${project.basedir}/src/main/resources/static</workingDirectory>
-                            <executable>npm</executable>
-                            <arguments>
-                                <argument>install</argument>
-                            </arguments>
-                        </configuration>
+                        <phase>compile</phase>
                         <goals>
-                            <goal>exec</goal>
+                            <goal>generate</goal>
                         </goals>
-                    </execution>
-                    <execution>
-                        <id>exec-npm-run-tsc</id>
-                        <phase>generate-sources</phase>
                         <configuration>
-                            <workingDirectory>${project.basedir}/src/main/resources/static</workingDirectory>
-                            <executable>npm</executable>
-                            <arguments>
-                                <argument>run</argument>
-                                <argument>tsc</argument>
-                            </arguments>
+                            <inputSpec>src/main/resources/api/swagger.json</inputSpec>
+                            <output>src/main/front/src/app</output>
+                            <language>typescript-angular2</language>
                         </configuration>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
                     </execution>
                 </executions>
             </plugin>

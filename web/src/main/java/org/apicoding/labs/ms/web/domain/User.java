@@ -1,8 +1,11 @@
 package org.apicoding.labs.ms.web.domain;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * Created by Thomas VAUTRIN on 20/10/2016.
  */
+@XmlRootElement(name = "User")
 public class User {
 
     private Long id;
