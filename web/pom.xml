@@ -219,7 +219,7 @@
                         </goals>
                         <configuration>
                             <inputSpec>src/main/resources/api/swagger.json</inputSpec>
-                            <output>src/main/front/src/app</output>
+                            <output>src/main/front/src/app/api</output>
                             <language>typescript-angular2</language>
                         </configuration>
                     </execution>
