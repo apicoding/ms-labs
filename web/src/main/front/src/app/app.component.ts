@@ -1,9 +1,10 @@
-import './app.loader.ts';
-import { Component, ViewEncapsulation } from '@angular/core';
-import { GlobalState } from './global.state';
-import { BaImageLoaderService, BaThemePreloader, BaThemeSpinner } from './theme/services';
-import { layoutPaths } from './theme/theme.constants';
-import { BaThemeConfig } from './theme/theme.config';
+import "./app.loader.ts";
+import {Component, ViewEncapsulation} from "@angular/core";
+import {GlobalState} from "./global.state";
+import {BaThemeConfigProvider, BaThemeConfig} from "./theme";
+import {BaThemeRun} from "./theme/directives";
+import {BaImageLoaderService, BaThemePreloader, BaThemeSpinner} from "./theme/services";
+import {layoutPaths} from "./theme/theme.constants";
 
 /*
  * App Component
@@ -11,6 +12,9 @@ import { BaThemeConfig } from './theme/theme.config';
  */
 @Component({
   selector: 'app',
+  pipes: [],
+  directives: [BaThemeRun],
+  providers: [BaThemeConfigProvider, BaThemeConfig, BaImageLoaderService, BaThemeSpinner],
   encapsulation: ViewEncapsulation.None,
   styles: [require('normalize.css'), require('./app.scss')],
   template: `
@@ -26,8 +30,7 @@ export class App {
 
   constructor(private _state: GlobalState,
               private _imageLoader: BaImageLoaderService,
-              private _spinner: BaThemeSpinner,
-              private _config:BaThemeConfig) {
+              private _spinner: BaThemeSpinner) {
 
     this._loadImages();
 

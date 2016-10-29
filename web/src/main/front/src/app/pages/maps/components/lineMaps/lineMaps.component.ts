@@ -1,9 +1,10 @@
-import {Component, ViewEncapsulation} from '@angular/core';
-
-import {LineMapsService} from './lineMaps.service';
+import {Component, ViewEncapsulation} from "@angular/core";
+import {LineMapsService} from "./lineMaps.service";
 
 @Component({
   selector: 'line-maps',
+  pipes: [],
+  providers: [LineMapsService],
   encapsulation: ViewEncapsulation.None,
   styles: [require('./lineMaps.scss')],
   template: require('./lineMaps.html')

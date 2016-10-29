@@ -1,1 +1,1 @@
-export * from './baScrollPosition.directive';
+export * from './baScrollPosition.directive.ts';

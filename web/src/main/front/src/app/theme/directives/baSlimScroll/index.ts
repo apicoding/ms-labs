@@ -1,1 +1,1 @@
-export * from './baSlimScroll.directive';
+export * from './baSlimScroll.directive.ts';

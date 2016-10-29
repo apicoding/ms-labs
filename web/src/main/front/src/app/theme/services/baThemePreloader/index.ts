@@ -1,1 +1,1 @@
-export * from './baThemePreloader.service';
+export * from './baThemePreloader.service.ts';

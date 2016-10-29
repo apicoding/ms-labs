@@ -1,16 +1,16 @@
-import {Component, ViewEncapsulation} from '@angular/core';
-import {BaThemeConfigProvider} from '../../../theme';
-
-import {TodoService} from './todo.service';
+import {Component, ViewEncapsulation} from "@angular/core";
+import {BaThemeConfigProvider} from "../../../theme";
+import {TodoService} from "./todo.service";
 
 @Component({
   selector: 'todo',
   encapsulation: ViewEncapsulation.None,
+  providers: [TodoService],
   styles: [require('./todo.scss')],
   template: require('./todo.html')
 })
 export class Todo {
-  
+
   public dashboardColors = this._baConfig.get().colors.dashboard;
 
   public todoList:Array<any>;

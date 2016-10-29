@@ -1,1 +1,1 @@
-export * from './baMsgCenter.component';
+export * from './baMsgCenter.component.ts';

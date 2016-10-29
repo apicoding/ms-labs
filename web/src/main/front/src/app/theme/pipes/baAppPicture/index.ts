@@ -1,1 +1,1 @@
-export * from './baAppPicture.pipe';
+export * from './baAppPicture.pipe.ts';

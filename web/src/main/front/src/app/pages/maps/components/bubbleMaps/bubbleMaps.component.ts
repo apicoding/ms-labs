@@ -1,9 +1,10 @@
-import {Component, ViewEncapsulation} from '@angular/core';
-
-import {BubbleMapsService} from './bubbleMaps.service';
+import {Component, ViewEncapsulation} from "@angular/core";
+import {BubbleMapsService} from "./bubbleMaps.service";
 
 @Component({
   selector: 'bubble-maps',
+  pipes: [],
+  providers: [BubbleMapsService],
   encapsulation: ViewEncapsulation.None,
   styles: [require('./bubbleMaps.scss')],
   template: require('./bubbleMaps.html'),

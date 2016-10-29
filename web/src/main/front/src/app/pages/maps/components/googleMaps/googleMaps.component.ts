@@ -1,8 +1,10 @@
-import {Component, ElementRef} from '@angular/core';
-import {GoogleMapsLoader} from './googleMaps.loader';
+import {Component, ElementRef} from "@angular/core";
+import {GoogleMapsLoader} from "./googleMaps.loader";
 
 @Component({
   selector: 'google-maps',
+  pipes: [],
+  providers: [],
   styles: [require('./googleMaps.scss')],
   template: require('./googleMaps.html'),
 })

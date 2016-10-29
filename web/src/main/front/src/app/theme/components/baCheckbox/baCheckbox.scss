@@ -48,11 +48,15 @@
   position: relative;
 }
 
-label.custom-checkbox {
-  margin-bottom: 12px;
+label.custom-checkbox > span {
+  display: block;
+  margin-top: -13px;
+  margin-right: 10px;
+}
 
-  & > span {
-    display: block;
-    margin-right: 10px;
+.form-horizontal {
+  .checkbox, .checkbox-inline {
+    padding-top: 0;
   }
 }
+

@@ -1,8 +1,9 @@
-import {Component} from '@angular/core';
-import {TreeModel} from 'ng2-tree';
+import {Component} from "@angular/core";
+import {TreeComponent, TreeModel} from "ng2-tree";
 
 @Component({
   selector: 'tree-view',
+  directives: [TreeComponent],
   template: require('./treeView.html'),
 })
 

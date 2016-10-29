@@ -1,12 +1,12 @@
-import {Component, ViewEncapsulation} from '@angular/core';
-
-import {CalendarService} from './calendar.service';
+import {Component, ViewEncapsulation} from "@angular/core";
+import {CalendarService} from "./calendar.service";
 
 @Component({
   selector: 'calendar',
   encapsulation: ViewEncapsulation.None,
   styles: [require('./calendar.scss')],
-  template: require('./calendar.html')
+  template: require('./calendar.html'),
+  providers: [CalendarService]
 })
 export class Calendar {
 
@@ -25,8 +25,8 @@ export class Calendar {
   private _onSelect(start, end):void {
 
     if (this._calendar != null) {
-      let title = prompt('Event Title:');
-      let eventData;
+      var title = prompt('Event Title:');
+      var eventData;
       if (title) {
         eventData = {
           title: title,

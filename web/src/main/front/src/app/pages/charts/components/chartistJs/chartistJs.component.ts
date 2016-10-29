@@ -1,10 +1,11 @@
-import {Component, ViewEncapsulation} from '@angular/core';
-
-import {ChartistJsService} from './chartistJs.service';
+import {Component, ViewEncapsulation} from "@angular/core";
+import {ChartistJsService} from "./chartistJs.service";
 
 @Component({
   selector: 'chartist-js',
   encapsulation: ViewEncapsulation.None,
+  pipes: [],
+  providers: [ChartistJsService],
   styles: [require('chartist/dist/chartist.css'), require('./chartistJs.scss')],
   template: require('./chartistJs.html'),
 })

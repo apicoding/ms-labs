@@ -1,14 +1,17 @@
-import {Component, ElementRef, HostListener, ViewEncapsulation} from '@angular/core';
-import {GlobalState} from '../../../global.state';
-import {layoutSizes} from '../../../theme';
-import {MENU} from '../../../../app/app.menu';
-import * as _ from 'lodash';
+import {Component, ElementRef, HostListener, ViewEncapsulation} from "@angular/core";
+import {GlobalState} from "../../../global.state";
+import {layoutSizes} from "../../../theme";
+import {BaMenu} from "../baMenu";
+import {MENU} from "../../../../app/app.menu";
+import * as _ from "lodash";
 
 @Component({
   selector: 'ba-sidebar',
   encapsulation: ViewEncapsulation.None,
   styles: [require('./baSidebar.scss')],
-  template: require('./baSidebar.html')
+  template: require('./baSidebar.html'),
+  providers: [],
+  directives: [BaMenu]
 })
 export class BaSidebar {
 

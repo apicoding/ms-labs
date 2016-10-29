@@ -1,13 +1,14 @@
-import {Component, ViewEncapsulation} from '@angular/core';
-
-import { SmartTablesService } from './smartTables.service';
-import { LocalDataSource } from 'ng2-smart-table';
+import {Component, ViewEncapsulation} from "@angular/core";
+import {NG2_SMART_TABLE_DIRECTIVES, LocalDataSource} from "ng2-smart-table";
+import {SmartTablesService} from "./smartTables.service";
 
 @Component({
   selector: 'basic-tables',
   encapsulation: ViewEncapsulation.None,
+  directives: [NG2_SMART_TABLE_DIRECTIVES],
   styles: [require('./smartTables.scss')],
-  template: require('./smartTables.html')
+  template: require('./smartTables.html'),
+  providers: [SmartTablesService]
 })
 export class SmartTables {
 
