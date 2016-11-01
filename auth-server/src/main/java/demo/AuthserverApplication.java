@@ -59,7 +59,10 @@ public class AuthserverApplication extends WebMvcConfigurerAdapter {
 
         @Override
         protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-            auth.parentAuthenticationManager(authenticationManager);
+            auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN", "USER", "PERSO");
+            auth.inMemoryAuthentication().withUser("user").password("user").roles("USER");
+
+            //auth.parentAuthenticationManager(authenticationManager);
         }
     }
 

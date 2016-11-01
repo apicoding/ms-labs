@@ -15,8 +15,8 @@ public class HomeController {
     @RequestMapping("/user")
     @ResponseBody
     public String user(Principal principal) {
-        System.err.println("************** DANS MICROSERVICE : " + principal.getName());
-        return principal.getName();
+        System.err.println("************** DANS MICROSERVICE : " + (principal != null ? principal.getName() : " Aucun principal"));
+        return principal != null ? principal.getName() : " Aucun principal";
     }
 
 }
