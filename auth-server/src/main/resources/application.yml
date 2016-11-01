@@ -1,0 +1,23 @@
+server:
+   contextPath: /uaa
+security:
+    user:
+       password:password
+    ignored: /css/**,/js/**,/favicon.ico,/webjars/**
+
+spring:
+  application:
+    name: auth-server
+  cloud:
+    cluster:
+      zookeeper:
+        leader:
+          enabled: true
+        connect: 192.168.99.100:2181
+      leader:
+        enabled: true
+    zookeeper:
+      connect-string: 192.168.99.100:2181
+
+logging:
+  level: org.springframework.security=DEBUG
