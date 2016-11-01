@@ -1,6 +1,7 @@
 package org.apicoding.labs.ms.web.rest;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
@@ -12,9 +13,10 @@ import java.security.Principal;
 public class HomeController {
 
     @RequestMapping("/user")
-    public Principal user(Principal principal) {
-        System.err.println("************** DANS MICROSERVICE : " + principal);
-        return principal;
+    @ResponseBody
+    public String user(Principal principal) {
+        System.err.println("************** DANS MICROSERVICE : " + principal.getName());
+        return principal.getName();
     }
 
 }

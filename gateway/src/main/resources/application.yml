@@ -2,6 +2,20 @@ spring.application.name: gateway
 
 server.port: 8082
 
+spring:
+  application:
+    name: user-services
+  cloud:
+    cluster:
+      zookeeper:
+        leader:
+          enabled: true
+        connect: 192.168.99.100:2181
+      leader:
+        enabled: true
+    zookeeper:
+      connect-string: 192.168.99.100:2181
+
 security:
   ignored: /favicon.ico
   basic:
