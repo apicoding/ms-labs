@@ -2,6 +2,7 @@ package org.apicoding.labs.ms.web.services;
 
 import org.apicoding.labs.ms.web.domain.User;
 
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -10,4 +11,6 @@ import java.util.List;
 public interface UserService {
 
     List<User> findAll();
+
+    Principal callUserService();
 }
