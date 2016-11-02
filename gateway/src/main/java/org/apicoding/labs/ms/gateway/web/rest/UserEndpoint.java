@@ -8,6 +8,7 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.Principal;
 import java.util.Collection;
@@ -25,44 +26,11 @@ public class UserEndpoint {
 
 
     @RequestMapping("/user")
+    @ResponseBody
     public String index(Model model, Principal principal) {
-        String callUrl = String.format("//%s/user", ServiceNamesEnum.USER_SERVICE);
+        String callUrl = String.format("http://%s/user", ServiceNamesEnum.USER_SERVICE);
         String result = this.oauth2RestTemplate.getForObject(callUrl, String.class);
-        model.addAttribute("username", principal.getName());
-        System.err.println("principal.getName() : " + principal.getName());
-        return "login";
+        return String.format("Utilisateur courant : %s - retour du microservice : %s", principal.getName(), result);
     }
 
-    @RequestMapping("/page1")
-    public String page1(Model model, Principal principal) {
-        String callUrl = String.format("//%s/user", ServiceNamesEnum.USER_SERVICE);
-        String result = this.oauth2RestTemplate.getForObject(callUrl, String.class);
-        if (principal instanceof OAuth2Authentication) {
-            Collection<GrantedAuthority> authorities = ((OAuth2Authentication) principal).getAuthorities();
-            for (GrantedAuthority ga : authorities) {
-                System.err.println("Droit : " + ga.getAuthority());
-            }
-        }
-        model.addAttribute("username", principal.getName());
-        System.err.println("Page1 : " + principal.getName());
-        return "login";
-    }
-
-    @RequestMapping("/page2")
-    public String page2(Model model, Principal principal) {
-        String callUrl = String.format("//%s/user", ServiceNamesEnum.USER_SERVICE);
-        String result = this.oauth2RestTemplate.getForObject(callUrl, String.class);
-        model.addAttribute("username", principal.getName());
-        System.err.println("Page2 : " + principal.getName());
-        return "login";
-    }
-
-    @RequestMapping("/page3")
-    public String page3(Model model, Principal principal) {
-        String callUrl = String.format("//%s/user", ServiceNamesEnum.USER_SERVICE);
-        String result = this.oauth2RestTemplate.getForObject(callUrl, String.class);
-        model.addAttribute("username", principal.getName());
-        System.err.println("Page3 : " + principal.getName());
-        return "login";
-    }
 }
