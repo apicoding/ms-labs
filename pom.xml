@@ -11,7 +11,9 @@
 	<description>Demo project for Spring Boot Microservice</description>
 
 	<modules>
+		<module>auth-server</module>
 		<module>user-services</module>
+		<module>gateway</module>
 	</modules>
 
 </project>
