@@ -1,9 +1,7 @@
-server:
-   contextPath: /uaa
-security:
-    user:
-       password:password
-    ignored: /css/**,/js/**,/favicon.ico,/webjars/**
+server.port: 9999
+server.contextPath: /uaa
+security.user.password: password
+logging.level.org.springframework.security: DEBUG
 
 spring:
   application:
@@ -19,5 +17,3 @@ spring:
     zookeeper:
       connect-string: 192.168.99.100:2181
 
-logging:
-  level: org.springframework.security=DEBUG
