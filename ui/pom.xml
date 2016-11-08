@@ -183,7 +183,7 @@
                             <goal>install-node-and-npm</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v4.4.6</nodeVersion>
+                            <nodeVersion>v4.4.7</nodeVersion>
                             <npmVersion>3.10.8</npmVersion>
                         </configuration>
                     </execution>
@@ -193,8 +193,16 @@
                             <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <workingDirectory>src/main/resources/static</workingDirectory>
                             <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>bower install</id>
+                        <goals>
+                            <goal>bower</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install --no-color</arguments>
                         </configuration>
                     </execution>
                     <execution>
@@ -203,8 +211,17 @@
                             <goal>gulp</goal>
                         </goals>
                         <configuration>
-                            <workingDirectory>src/main/resources/static</workingDirectory>
                             <arguments>build --no-notification</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>gulp test</id>
+                        <goals>
+                            <goal>gulp</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <arguments>test --no-notification</arguments>
                         </configuration>
                     </execution>
                 </executions>
