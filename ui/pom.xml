@@ -6,7 +6,7 @@
     <groupId>org.apicoding.labs.ms</groupId>
     <artifactId>ui</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>ui</name>
     <description>Demo project for Spring Boot</description>
