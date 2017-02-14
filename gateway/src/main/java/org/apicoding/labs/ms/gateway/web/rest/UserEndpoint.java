@@ -25,9 +25,17 @@ public class UserEndpoint {
     private OAuth2RestTemplate oauth2RestTemplate;
 
 
-    @RequestMapping("/user")
+    @RequestMapping("/admin-profile")
     @ResponseBody
-    public String index(Model model, Principal principal) {
+    public String adminProfile(Model model, Principal principal) {
+        String callUrl = String.format("http://%s/admin", ServiceNamesEnum.USER_SERVICE);
+        String result = this.oauth2RestTemplate.getForObject(callUrl, String.class);
+        return String.format("Utilisateur courant : %s - retour du microservice : %s", principal.getName(), result);
+    }
+
+    @RequestMapping("/user-profile")
+    @ResponseBody
+    public String userProfile(Model model, Principal principal) {
         String callUrl = String.format("http://%s/user", ServiceNamesEnum.USER_SERVICE);
         String result = this.oauth2RestTemplate.getForObject(callUrl, String.class);
         return String.format("Utilisateur courant : %s - retour du microservice : %s", principal.getName(), result);

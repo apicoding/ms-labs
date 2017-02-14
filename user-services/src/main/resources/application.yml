@@ -17,11 +17,11 @@ security:
   user:
     password: none
   oauth2:
-    client:
-      accessTokenUri: http://localhost:9999/uaa/oauth/token
-      userAuthorizationUri: http://localhost:9999/uaa/oauth/authorize
-      clientId: acme
-      clientSecret: acmesecret
+    #client:
+    #  accessTokenUri: http://localhost:9999/uaa/oauth/token
+    #  userAuthorizationUri: http://localhost:9999/uaa/oauth/authorize
+    #  clientId: acme
+    #  clientSecret: acmesecret
       #scope: openid,read,write
     resource:
       #user-info-uri: //auth-server/uaa/me
