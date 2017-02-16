@@ -1,17 +1,16 @@
 package org.apicoding.labs.ms.gateway.web.rest;
 
+import java.security.Principal;
+
+import org.apicoding.labs.ms.gateway.web.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.core.GrantedAuthority;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
-import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.security.Principal;
-import java.util.Collection;
 
 
 /**
@@ -26,19 +25,22 @@ public class UserEndpoint {
 
 
     @RequestMapping("/admin-profile")
-    @ResponseBody
-    public String adminProfile(Model model, Principal principal) {
+    @Secured("ADMIN")
+    public ResponseEntity<UserDTO> adminProfile(Model model, Principal principal) {
         String callUrl = String.format("http://%s/admin", ServiceNamesEnum.USER_SERVICE);
         String result = this.oauth2RestTemplate.getForObject(callUrl, String.class);
-        return String.format("Utilisateur courant : %s - retour du microservice : %s", principal.getName(), result);
+        UserDTO userDTO = new UserDTO();
+        userDTO.setFirstname(result);
+        return ResponseEntity.ok().body(userDTO);
     }
 
     @RequestMapping("/user-profile")
-    @ResponseBody
-    public String userProfile(Model model, Principal principal) {
+    public ResponseEntity<UserDTO> userProfile(Model model, Principal principal) {
         String callUrl = String.format("http://%s/user", ServiceNamesEnum.USER_SERVICE);
         String result = this.oauth2RestTemplate.getForObject(callUrl, String.class);
-        return String.format("Utilisateur courant : %s - retour du microservice : %s", principal.getName(), result);
+        UserDTO userDTO = new UserDTO();
+        userDTO.setFirstname(result);
+        return ResponseEntity.ok().body(userDTO);
     }
 
 }
