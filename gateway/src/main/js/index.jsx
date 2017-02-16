@@ -12,23 +12,13 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {employees: "Aucun appel au service effectué pour le moment"};
+
+        // Handle
         this.callAdminService = this.callAdminService.bind(this);
         this.callUserService = this.callUserService.bind(this);
+        this.logout = this.logout.bind(this);
     }
 
-    /* componentDidMount() {
-     client({method: 'GET', path: '/admin-profile'}).done(response => {
-     this.setState({employees: response.entity.firstname});
-     console.log(response);
-     }, response => {
-     if (response.status.code === 403) {
-     alert('ACCESS DENIED: You are not authorized to update ');
-     }
-     if (response.status.code === 412) {
-     alert('DENIED: Unable to update. Your copy is stale.');
-     }
-     });
-     }*/
 
     callAdminService() {
         client({method: 'GET', path: '/admin-profile'}).done(response => {
@@ -58,19 +48,34 @@ class App extends React.Component {
         });
     }
 
+    logout() {
+        client({method: 'GET', path: '/logout'}).done(response => {
+            document.location.href = './'
+        }, response => {
+            if (response.status.code === 403) {
+                alert('ACCESS DENIED: You are not authorized to update ');
+            }
+            if (response.status.code === 412) {
+                alert('DENIED: Unable to update. Your copy is stale.');
+            }
+        });
+    }
+
     render() {
         return (
             <div>
-                {this.state.employees}
-                <br />
-                <br />
-                <button type="button" onClick={this.callAdminService}>Service Admin</button>
-                <br />
-                <br />
-                <button type="button" onClick={this.callUserService}>Service User</button>
-                <br />
-                <br />
-                <button type="button" formAction="/logout" formMethod="post">Deconnexion post</button>
+                <form action="/logout" method="POST">
+                    {this.state.employees}
+                    <br />
+                    <br />
+                    <button type="button" onClick={this.callAdminService}>Service Admin</button>
+                    <br />
+                    <br />
+                    <button type="button" onClick={this.callUserService}>Service User</button>
+                    <br />
+                    <br />
+                    <button type="submit">Deconnexion</button>
+                </form>
             </div>
         )
     }
