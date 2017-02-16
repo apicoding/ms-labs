@@ -6,7 +6,7 @@ import org.apicoding.labs.ms.gateway.web.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +25,7 @@ public class UserEndpoint {
 
 
     @RequestMapping("/admin-profile")
-    @Secured("ADMIN")
+    @PreAuthorize("#oauth2.hasScope('openid') and hasRole('ADMIN')")
     public ResponseEntity<UserDTO> adminProfile(Model model, Principal principal) {
         String callUrl = String.format("http://%s/admin", ServiceNamesEnum.USER_SERVICE);
         String result = this.oauth2RestTemplate.getForObject(callUrl, String.class);

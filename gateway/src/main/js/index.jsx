@@ -18,6 +18,13 @@ class App extends React.Component {
         client({method: 'GET', path: '/admin-profile'}).done(response => {
             this.setState({employees: response.entity.firstname});
             console.log(response);
+        }, response => {
+            if (response.status.code === 403) {
+                alert('ACCESS DENIED: You are not authorized to update ');
+            }
+            if (response.status.code === 412) {
+                alert('DENIED: Unable to update. Your copy is stale.');
+            }
         });
     }
 
