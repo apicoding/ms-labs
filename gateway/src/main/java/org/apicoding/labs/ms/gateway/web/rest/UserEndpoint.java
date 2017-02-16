@@ -1,6 +1,7 @@
 package org.apicoding.labs.ms.gateway.web.rest;
 
 import java.security.Principal;
+import java.util.Date;
 
 import org.apicoding.labs.ms.gateway.web.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +26,12 @@ public class UserEndpoint {
 
 
     @RequestMapping("/admin-profile")
-    @PreAuthorize("#oauth2.hasScope('openid') and hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<UserDTO> adminProfile(Model model, Principal principal) {
         String callUrl = String.format("http://%s/admin", ServiceNamesEnum.USER_SERVICE);
         String result = this.oauth2RestTemplate.getForObject(callUrl, String.class);
         UserDTO userDTO = new UserDTO();
-        userDTO.setFirstname(result);
+        userDTO.setFirstname(String.format("Loggué comme : %s - %s", result, new Date()));
         return ResponseEntity.ok().body(userDTO);
     }
 
@@ -39,7 +40,7 @@ public class UserEndpoint {
         String callUrl = String.format("http://%s/user", ServiceNamesEnum.USER_SERVICE);
         String result = this.oauth2RestTemplate.getForObject(callUrl, String.class);
         UserDTO userDTO = new UserDTO();
-        userDTO.setFirstname(result);
+        userDTO.setFirstname(String.format("Loggué comme : %s - %s", result, new Date()));
         return ResponseEntity.ok().body(userDTO);
     }
 
