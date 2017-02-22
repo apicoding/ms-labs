@@ -1,13 +1,18 @@
 const path = require('path');
+var webpack = require('webpack');
+
 module.exports = {
     entry: './src/main/app/main.js',
     output: {
         path: path.resolve(__dirname, './src/main/resources/static/'),
         filename: 'bundle.js'
     },
+
     resolve: {
-        extensions: ['', '.js'],
-        root: path.join(__dirname, './src/main/app/')
+        extensions: ['.js', '.jsx'], //**Change
+        modules: [
+            'node_modules'
+        ]
     },
     devServer: {
         inline: true,
