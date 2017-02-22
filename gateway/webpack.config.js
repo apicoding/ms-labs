@@ -1,25 +1,22 @@
-var path = require('path');
-
+const path = require('path');
 module.exports = {
-    entry: './src/main/js/index.jsx',
-    devtool: 'sourcemaps',
-    cache: false,
-    debug: true,
+    entry: './src/main/app/main.js',
     output: {
-        path: __dirname,
-        filename: './src/main/webapp/built/bundle.js'
+        path: path.resolve(__dirname, './src/main/resources/static/'),
+        filename: 'bundle.js'
+    },
+    devServer: {
+        inline: true,
+        contentBase: './src/main/app',
+        port: 8100
     },
     module: {
         loaders: [
             {
-                test: path.join(__dirname, '.'),
-                exclude: /(node_modules)/,
-                loader: 'babel',
-                query: {
-                    cacheDirectory: true,
-                    presets: ['es2015', 'react']
-                }
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader'
             }
         ]
     }
-};
+}
