@@ -5,6 +5,10 @@ module.exports = {
         path: path.resolve(__dirname, './src/main/resources/static/'),
         filename: 'bundle.js'
     },
+    resolve: {
+        extensions: ['', '.js'],
+        root: path.join(__dirname, './src/main/app/')
+    },
     devServer: {
         inline: true,
         contentBase: './src/main/app',

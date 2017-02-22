@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router'
+import Address from './components/Address';
+import Home from './components/Home';
+import NotFound from './components/NotFound';
 
-const Home = () => <h1>Hello from Home!</h1>
-const Address = () => <h1>We are located at 555 Jackson St.</h1>
-const NotFound = () => <h1>NotFound</h1>
 const Nav = () => (
     <div>
         <Link to='/'>Home</Link>&nbsp;
