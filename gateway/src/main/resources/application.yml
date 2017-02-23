@@ -14,6 +14,9 @@ spring:
         enabled: true
     zookeeper:
       connect-string: 192.168.99.100:2181
+  devtools:
+    restart:
+      enabled: false
 
 security:
   ignored: /favicon.ico

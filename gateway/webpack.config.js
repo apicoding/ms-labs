@@ -2,7 +2,7 @@ const path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    entry: './src/main/app/main.js',
+    entry: './src/main/front/app/main.js',
     output: {
         path: path.resolve(__dirname, './src/main/resources/static/'),
         filename: 'bundle.js'
@@ -16,9 +16,13 @@ module.exports = {
     },
     devServer: {
         inline: true,
-        contentBase: './src/main/app',
-        port: 8100
+        contentBase: './src/main/front/app',
+        port: 8100,
+        proxy: {
+            "/api": "http://localhost:8080"
+        }
     },
+
     module: {
         loaders: [
             {
