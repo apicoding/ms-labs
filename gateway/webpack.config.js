@@ -1,5 +1,7 @@
 const path = require('path');
 var webpack = require('webpack');
+var combineLoaders = require('webpack-combine-loaders');
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     entry: './src/main/front/app/main.js',
@@ -14,6 +16,9 @@ module.exports = {
             'node_modules'
         ]
     },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin()
+    ],
     devServer: {
         inline: true,
         contentBase: './src/main/front/app',
@@ -24,12 +29,44 @@ module.exports = {
     },
 
     module: {
-        loaders: [
+       loaders: [
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader'
+                loaders: ['react-hot-loader','babel-loader']
+            },
+            {
+                test: /\.(jpg|png)$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 25000,
+                },
+            },
+            {
+                test: /\.(jpg|png)$/,
+                loader: 'file-loader',
+                options: {
+                    name: '[path][name].[hash].[ext]',
+                },
+            },
+            {
+                test: /\.scss$/,
+                loaders: ['style', 'css', 'sass']
             }
-        ]
+            /*{
+                test: /\.css$/,
+                loader: combineLoaders([
+                    {
+                        loader: 'style-loader'
+                    }, {
+                        loader: 'css-loader',
+                        query: {
+                            modules: true,
+                            localIdentName: '[name]__[local]___[hash:base64:5]'
+                        }
+                    }
+                ])
+            }*/
+            ]
     }
 }

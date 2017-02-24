@@ -1,29 +1,21 @@
-import React, { Component } from 'react'
-import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router'
-import Address from './components/Address';
-import Home from './components/Home';
-import NotFound from './components/NotFound';
+import React, {Component} from "react";
+import {Router, Route, IndexRoute, hashHistory} from "react-router";
+import Search from "./components/Search";
+import Home from "./components/Home";
+import NotFound from "./components/NotFound";
+import Container from "./components/Container";
+import Administration from "./components/Administration";
 
-const Nav = () => (
-    <div>
-        <Link to='/'>Home</Link>&nbsp;
-        <Link to='/address'>Address</Link>
-    </div>
-)
-
-const Container = (props) => <div>
-    <Nav />
-    {props.children}
-</div>
 
 class App extends Component {
     render() {
         return (
             <Router history={hashHistory}>
                 <Route path='/' component={Container}>
-                    <IndexRoute component={Home} />
-                    <Route path='/address' component={Address} />
-                    <Route path='*' component={NotFound} />
+                    <IndexRoute component={Home}/>
+                    <Route path='/search' component={Search}/>
+                    <Route path='/admin' component={Administration}/>
+                    <Route path='*' component={NotFound}/>
                 </Route>
             </Router>
         )

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-export default class Home extends Component {
+export default class Administration extends Component {
 
     constructor(props, context) {
         super(props, context);
@@ -11,7 +11,7 @@ export default class Home extends Component {
     render() {
         return (
             <div>
-                <h1>Page d'accueil !</h1>
+                <h1>Administration</h1>
             </div>
         )
     }

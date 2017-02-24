@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.apicoding.labs.ms.gateway.web.dto.UserDTO;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +39,7 @@ public class EmployeeResource {
     @Transactional(readOnly = true)
     public ResponseEntity<UserDTO> create(@RequestBody UserDTO userDTO) throws URISyntaxException {
         System.err.println("********** Cote serveur create : " + userDTO.getFirstname());
+        SecurityContext c = SecurityContextHolder.getContext();
         users.add(userDTO);
         userDTO.setCurrentDate(new Date());
         return ResponseEntity.ok().body(userDTO);
