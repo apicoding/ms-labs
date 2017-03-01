@@ -1,15 +1,12 @@
-package org.apicoding.labs.ms.gateway.web.dto;
+package demo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-
 /**
- * Created by Thomas VAUTRIN on 16/02/2017.
+ * Created by Thomas VAUTRIN on 28/02/2017.
  */
-@JsonIgnoreProperties
-public class UserDTO {
+public class UserInfos {
 
     private String login;
 
@@ -18,7 +15,8 @@ public class UserDTO {
     /**
      * Gets the value of the login property.
      *
-     * @return possible object is {@link String }
+     * @return possible object is
+     * {@link String }
      */
     public String getLogin() {
         return login;
@@ -27,8 +25,7 @@ public class UserDTO {
     /**
      * Set the value of the login property.
      *
-     * @param login
-     *            the new value
+     * @param login the new value
      */
     public void setLogin(String login) {
         this.login = login;
@@ -37,7 +34,8 @@ public class UserDTO {
     /**
      * Gets the value of the authorities property.
      *
-     * @return possible object is {@link List<String> }
+     * @return possible object is
+     * {@link List<String> }
      */
     public List<String> getAuthorities() {
         return authorities;
@@ -46,8 +44,7 @@ public class UserDTO {
     /**
      * Set the value of the authorities property.
      *
-     * @param authorities
-     *            the new value
+     * @param authorities the new value
      */
     public void setAuthorities(List<String> authorities) {
         this.authorities = authorities;

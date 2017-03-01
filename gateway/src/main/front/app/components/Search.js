@@ -5,7 +5,6 @@ import {Field, Form} from "react-redux-form";
 var client = require('../api/client');
 class Search extends Component {
 
-
     createUser(user) {
         client({
             method: 'POST',
@@ -15,7 +14,7 @@ class Search extends Component {
                 'Content-Type': 'application/json'
             }
         }).then(response => {
-            this.setState({userDto: response.entity });
+            this.setState({userDto: response.entity});
         });
     }
 

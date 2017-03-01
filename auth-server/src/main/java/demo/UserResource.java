@@ -15,17 +15,19 @@ import java.util.Collection;
 @RestController
 public class UserResource {
 
-    @RequestMapping("/me")
+    @RequestMapping("/user")
     @ResponseBody
-    public Principal user(Principal principal) {
+    public UserInfos user(Principal principal) {
+        UserInfos userInfos = new UserInfos();
         System.err.println("The principal : " + principal.getName());
-
+        userInfos.setLogin(principal.getName());
         if (principal instanceof OAuth2Authentication) {
             Collection<GrantedAuthority> authorities = ((OAuth2Authentication) principal).getAuthorities();
             for (GrantedAuthority ga : authorities) {
+                userInfos.getAuthorities().add(ga.getAuthority());
                 System.err.println("Droit : " + ga.getAuthority());
             }
         }
-        return principal;
+        return userInfos;
     }
 }

@@ -24,7 +24,9 @@ module.exports = {
         contentBase: './src/main/front/app',
         port: 8100,
         proxy: {
-            "/api": "http://localhost:8080"
+            "/api": "http://localhost:8080",
+            "/login": "http://localhost:8080",
+            "/logout": "http://localhost:8080"
         }
     },
 

@@ -17,7 +17,6 @@ spring:
   devtools:
     restart:
       enabled: false
-
 security:
   ignored: /favicon.ico
   basic:
@@ -33,18 +32,5 @@ security:
       #token-info-uri: http://localhost:8080/uaa/token_key
       #jwt.keyUri: http://localhost:8080/uaa/token_key
       #user-info-uri: http://localhost:8080/uaa/me
-      user-info-uri: //auth-server/uaa/me
-
-apicoding:
-  oauth2:
-    client:
-      accessTokenUri: http://localhost:9999/uaa/oauth/token
-      userAuthorizationUri: http://localhost:9999/uaa/oauth/authorize
-      clientId: acme
-      clientSecret: acmesecret
-      scope: openid,read,write
-    resource:
-      #token-info-uri: http://localhost:8080/uaa/token_key
-      #jwt.keyUri: http://localhost:8080/uaa/token_key
-      #user-info-uri: http://localhost:8080/uaa/me
-      user-info-uri: //auth-server/uaa/me
+      user-info-uri: //auth-server/uaa/user
+  sessions: never
