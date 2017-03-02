@@ -5,7 +5,9 @@ package org.apicoding.labs.ms.gateway.web.rest;
  */
 public enum ServiceNamesEnum {
 
-    USER_SERVICE("user-services");
+    USER_SERVICE("user-services"),
+
+    DOCUMENTS_SERVICE("document-services");
 
     private String serviceName;
 
