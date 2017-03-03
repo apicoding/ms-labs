@@ -44,7 +44,7 @@ export default class Navigation extends Component {
         return (
             <div>
                 <Link to='/'>Home</Link>&nbsp;
-                <Link to='/search'>Recherche</Link>&nbsp;&nbsp;
+                { userCtx.hasAuthority("ROLE_ADMIN") ? <Link to='/search'>Recherche</Link> : '' }&nbsp;&nbsp;
                 { userCtx.hasAuthority("ROLE_ADMIN") ? <Link to='/admin'>Administration</Link> : '' }&nbsp;&nbsp;
                 { this.state.isAuthenticated == false ? <a href="/login">Connexion</a> :  <a href="/logout">({this.state.user.login})&nbsp;Déconnexion</a> }
             </div>

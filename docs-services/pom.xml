@@ -7,7 +7,7 @@
     <artifactId>docs-services</artifactId>
     <packaging>jar</packaging>
 
-    <name>user-services</name>
+    <name>docs-services</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>

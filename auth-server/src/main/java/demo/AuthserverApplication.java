@@ -45,7 +45,7 @@ public class AuthserverApplication extends WebMvcConfigurerAdapter {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedOrigins("http://localhost:8080", "http://localhost:8100");
+        registry.addMapping("/**").allowedOrigins("*");
     }
 
     @Override
@@ -100,7 +100,10 @@ public class AuthserverApplication extends WebMvcConfigurerAdapter {
 
         @Override
         public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-            clients.inMemory().withClient("acme").secret("acmesecret").authorizedGrantTypes("authorization_code", "refresh_token", "password").scopes("read", "write", "openid");
+            clients.inMemory()
+                    .withClient("acme").secret("acmesecret").authorizedGrantTypes("authorization_code", "refresh_token", "password").scopes("read", "write", "openid")
+                    .and()
+                    .withClient("management-portal").secret("management-portal-secret").authorizedGrantTypes("authorization_code", "refresh_token", "password").scopes("read", "write", "openid");
         }
 
         @Override

@@ -4,17 +4,20 @@ var combineLoaders = require('webpack-combine-loaders');
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-    entry: './src/main/front/app/main.js',
+    entry: './src/main/front/app/main.tsx',
     output: {
         path: path.resolve(__dirname, './src/main/resources/static/'),
         filename: 'bundle.js'
     },
 
+    // Enable sourcemaps for debugging webpack's output.
+    devtool: "source-map",
+
     resolve: {
-        extensions: ['.js', '.jsx'], //**Change
-        modules: [
+        extensions: ['', '.js', '.ts', '.tsx'],
+        /*modules: [
             'node_modules'
-        ]
+        ]*/
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin()
@@ -31,11 +34,28 @@ module.exports = {
     },
 
     module: {
-       loaders: [
+        rules: [
+            {
+                enforce: 'pre',
+                test: /\.tsx?$/,
+                loader: 'tslint',
+                exclude: /(node_modules)/,
+            },
+            {
+                test: /\.tsx?$/,
+                loaders: ['awesome-typescript-loader'],
+                exclude: /(node_modules)/
+            }
+        ],
+        loaders: [
+            {
+                test: /\.tsx?$/,
+                loader: ['react-hot-loader', 'babel-loader','awesome-typescript-loader']
+            },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loaders: ['react-hot-loader','babel-loader']
+                loaders: ['react-hot-loader', 'babel-loader']
             },
             {
                 test: /\.(jpg|png)$/,
@@ -44,31 +64,26 @@ module.exports = {
                     limit: 25000,
                 },
             },
-            {
-                test: /\.(jpg|png)$/,
-                loader: 'file-loader',
-                options: {
-                    name: '[path][name].[hash].[ext]',
-                },
-            },
+            /*{
+             test: /\.(jpg|png)$/,
+             loader: 'file-loader',
+             options: {
+             outputPath: './images/[name].[ext]',
+             },
+             },*/
             {
                 test: /\.scss$/,
-                loaders: ['style', 'css', 'sass']
+                loaders: ['style-loader', 'css-loader', 'sass-loader']
             }
-            /*{
-                test: /\.css$/,
-                loader: combineLoaders([
-                    {
-                        loader: 'style-loader'
-                    }, {
-                        loader: 'css-loader',
-                        query: {
-                            modules: true,
-                            localIdentName: '[name]__[local]___[hash:base64:5]'
-                        }
-                    }
-                ])
-            }*/
-            ]
+        ]
+    },
+
+    // When importing a module whose path matches one of the following, just
+    // assume a corresponding global variable exists and use that instead.
+    // This is important because it allows us to avoid bundling all of our
+    // dependencies, which allows browsers to cache those libraries between builds.
+    externals: {
+        "react": "React",
+        "react-dom": "ReactDOM"
     }
 }

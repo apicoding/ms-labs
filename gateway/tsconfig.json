@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "outDir": "./src/main/resources/static/",
+    "allowJs": true,
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "module": "commonjs",
+    "target": "es6",
+    "jsx": "react"
+  },
+  "include": [
+    "./src/main/front/**/*"
+  ]
+}

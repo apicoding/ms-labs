@@ -1,7 +1,14 @@
-$font-stack:  Helvetica, sans-serif;
-$primary-color: #cfaa4a;
+body{
+    background-color: greenyellow;
+    /* le loader resolve-url va transformer le chemin
+    * './assets/images/image1.png' en '/img/image1.png'
+    */
+}
 
-.monteststyle {
-    font: 100% $font-stack;
-    color: $primary-color;
+
+myclass{
+    background-color: lightgrey;
+    /* le loader resolve-url va transformer le chemin
+    * './assets/images/image1.png' en '/img/image1.png'
+    */
 }

@@ -4,10 +4,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.apicoding.labs.ms</groupId>
-    <artifactId>gateway</artifactId>
+    <artifactId>management-portal</artifactId>
     <packaging>war</packaging>
 
-    <name>gateway</name>
+    <name>management-portal</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>
@@ -166,7 +166,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <!--<plugin>
+            <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>1.2</version>
@@ -200,7 +200,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>-->
+            </plugin>
         </plugins>
     </build>
 
@@ -261,16 +261,12 @@
                     <plugin>
                         <groupId>com.github.kongchen</groupId>
                         <artifactId>swagger-maven-plugin</artifactId>
-                        <version>3.1.4</version>
                         <configuration>
                             <apiSources>
                                 <apiSource>
                                     <springmvc>true</springmvc>
-                                    <locations>org.apicoding.labs.ms.gateway.web.rest</locations>
-                                    <schemes>
-                                        <scheme>http</scheme>
-                                        <scheme>https</scheme>
-                                    </schemes>
+                                    <locations>org.apicoding.labs.ms.web.web.rest</locations>
+                                    <schemes>http,https</schemes>
                                     <host>localhost:8080</host>
                                     <basePath>/</basePath>
                                     <info>
@@ -314,7 +310,7 @@
                                 <configuration>
                                     <inputSpec>src/main/resources/api/swagger.json</inputSpec>
                                     <output>src/main/front/generated/swagger</output>
-                                    <language>typescript-fetch</language>
+                                    <language>typescript-angular2</language>
                                 </configuration>
                             </execution>
                         </executions>
