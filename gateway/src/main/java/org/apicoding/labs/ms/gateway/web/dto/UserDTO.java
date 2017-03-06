@@ -13,6 +13,8 @@ public class UserDTO {
 
     private String login;
 
+    private boolean isAuthenticated;
+
     private List<String> authorities = new ArrayList<>();
 
     /**
@@ -51,5 +53,24 @@ public class UserDTO {
      */
     public void setAuthorities(List<String> authorities) {
         this.authorities = authorities;
+    }
+
+    /**
+     * Gets the value of the isAuthenticated property.
+     *
+     * @return possible object is
+     * {@link boolean }
+     */
+    public boolean isAuthenticated() {
+        return isAuthenticated;
+    }
+
+    /**
+     * Set the value of the isAuthenticated property.
+     *
+     * @param authenticated the new value
+     */
+    public void setAuthenticated(boolean authenticated) {
+        isAuthenticated = authenticated;
     }
 }

@@ -265,7 +265,7 @@
                         <configuration>
                             <apiSources>
                                 <apiSource>
-                                    <springmvc>true</springmvc>
+                                    <springmvc>false</springmvc>
                                     <locations>org.apicoding.labs.ms.gateway.web.rest</locations>
                                     <schemes>
                                         <scheme>http</scheme>

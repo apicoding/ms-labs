@@ -5,17 +5,20 @@ export default class UserContext {
 
     login : string;
 
+    authenticated : boolean = false;
+
     authorities: string[];
 
-    constructor(login, authorities) {
+    constructor(login = "anonymous", authenticated = false, authorities = []) {
         this.login = login;
+        this.authenticated = authenticated;
         this.authorities = authorities;
     }
 
-    hasAuthority(authority) {
+    hasAuthority(authority : string) {
         if (this.authorities != undefined) {
             return Array.from(this.authorities).indexOf(authority) > -1;
         }
-        return false
+        return false;
     };
 }

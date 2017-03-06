@@ -2,8 +2,7 @@ import * as React from "react";
 import {connect} from "react-redux";
 import {Field, Form} from "react-redux-form";
 import UserContext from "../data/UserContext";
-import ReactDataGrid from "react-data-grid";
-import client from "../api/client";
+import HttpUtil from "../api/HttpUtil";
 
 interface SearchState {
     columns: [{name: 'id', key: 'id', resizable: true, width: 40},
@@ -19,6 +18,8 @@ export class Search extends React.Component<{}, SearchState> {
 
     state: SearchState;
 
+    documents: any;
+
     constructor(props, context) {
         super(props, context);
 
@@ -26,19 +27,19 @@ export class Search extends React.Component<{}, SearchState> {
     }
 
 
-    componentWillMount() {
-        client({
-            method: 'GET',
-            path: '/api/document/findall',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(response => {
-            this.setState({documents: response.entity});
+    componentDidMount() {
+        HttpUtil.getHttp("/api/document/findall").subscribe((documentsDTO: any) => {
+            console.log(documentsDTO);
+            this.documents = documentsDTO;
         });
+        this.forceUpdate()
     }
 
     createUser(user) {
+
+        HttpUtil.post("/api/create", user);
+
+/*
         client({
             method: 'POST',
             path: '/api/create',
@@ -48,7 +49,7 @@ export class Search extends React.Component<{}, SearchState> {
             }
         }).then(response => {
             this.setState({userDto: response.entity});
-        });
+        });*/
     }
 
 
@@ -72,11 +73,6 @@ export class Search extends React.Component<{}, SearchState> {
                     <button>Create</button>
                 </Form>
                 <br/>
-                {this.state.documents.length > 0 ?
-                    <ReactDataGrid
-                        columns={this.state.columns}
-                        rowGetter={this.rowGetter}
-                        rowsCount={this.state.documents.length}/> : <div></div> }
 
             </div>
         )
