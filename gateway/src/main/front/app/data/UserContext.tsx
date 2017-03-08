@@ -3,21 +3,23 @@
  */
 export default class UserContext {
 
-    login : string;
+    login: string;
 
-    authenticated : boolean = false;
+    authenticated: boolean = false;
 
     authorities: string[];
 
-    constructor(login = "anonymous", authenticated = false, authorities = []) {
-        this.login = login;
-        this.authenticated = authenticated;
-        this.authorities = authorities;
+    constructor(json: any = null) {
+        if(json != null){
+            for (var propName in json) {
+                this[propName] = json[propName]
+            }
+        }
     }
 
-    hasAuthority(authority : string) {
-        if (this.authorities != undefined) {
-            return Array.from(this.authorities).indexOf(authority) > -1;
+    public hasAuthority(authority: string): boolean {
+        if (this.authorities != undefined && this.authorities.length > 0) {
+            return this.authorities.indexOf(authority) > -1;
         }
         return false;
     };

@@ -5,7 +5,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import io.swagger.annotations.Api;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apicoding.labs.ms.gateway.web.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,10 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by Nous on 31/10/2016.
@@ -34,12 +32,11 @@ public class UserEndpoint {
     private OAuth2RestTemplate oauth2RestTemplate;
 
     @GetMapping(value = "/user")
-    @ResponseBody
     public ResponseEntity<UserDTO> user(Principal principal, HttpServletRequest request) {
         Cookie[] c = request.getCookies();
         UserDTO userDTO = new UserDTO();
         userDTO.setLogin("anonymous");
-        if(principal == null){
+        if (principal == null) {
             return ResponseEntity.ok().body(userDTO);
         }
         OAuth2Authentication oAuth2Authentication = (OAuth2Authentication) principal;
