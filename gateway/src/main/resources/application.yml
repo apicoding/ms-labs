@@ -32,6 +32,10 @@ hystrix:
                     thread:
                         timeoutInMilliseconds: 10000
 
+feign:
+  hystrix:
+     enabled: false
+
 security:
   ignored: /favicon.ico
   user:
