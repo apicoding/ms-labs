@@ -6,10 +6,7 @@ import java.util.List;
 import org.apicoding.labs.ms.gateway.services.DocumentService;
 import org.apicoding.labs.ms.gateway.web.dto.DocumentDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,11 +21,6 @@ import io.swagger.annotations.ApiOperation;
 @Controller
 @RequestMapping("/api/document")
 public class DocumentEndpoint {
-
-    @Autowired
-    @Qualifier("loadBalancedOauth2RestTemplate")
-    @LoadBalanced
-    private OAuth2RestTemplate oauth2RestTemplate;
 
     @Autowired
     private DocumentService documentService;
