@@ -14,23 +14,13 @@ import org.springframework.security.oauth2.client.token.grant.client.ClientCrede
  * Created by Nous on 01/11/2016.
  */
 @Configuration
-@EnableCircuitBreaker
 public class WebConfig {
-
-
-   /* @LoadBalanced
-    @Bean
-    public OAuth2RestTemplate loadBalancedOauth2RestTemplate(
-            OAuth2ProtectedResourceDetails resource,
-            OAuth2ClientContext oauth2Context) {
-        OAuth2RestTemplate oauth2RestTemplate = new OAuth2RestTemplate(resource, oauth2Context);
-        return oauth2RestTemplate;
-    }*/
 
     @LoadBalanced
     @Bean
-    public OAuth2RestTemplate loadBalancedOauth2RestTemplate(UserInfoRestTemplateFactory factory) {
-        return factory.getUserInfoRestTemplate();
+    public OAuth2RestTemplate loadBalancedOauth2RestTemplate(UserInfoRestTemplateFactory userInfoRestTemplateFactory) {
+        OAuth2RestTemplate restTemplate = userInfoRestTemplateFactory.getUserInfoRestTemplate();
+        return restTemplate;
     }
 
     @Bean

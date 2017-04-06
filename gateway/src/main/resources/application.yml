@@ -4,21 +4,38 @@ server:
 spring:
   application:
     name: gateway
-  cloud:
-    cluster:
-      zookeeper:
-        leader:
-          enabled: true
-        connect: 192.168.99.100:2181
-      leader:
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    appname: gateway
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}:${random.value}}
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+    leaseRenewalIntervalInSeconds: 2
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}:${random.value}}
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+ribbon:
+    eureka:
         enabled: true
-    zookeeper:
-      connect-string: 192.168.99.100:2181
-  devtools:
-    restart:
-      enabled: false
+
+# See https://github.com/Netflix/Hystrix/wiki/Configuration
+hystrix:
+    command:
+        default:
+            execution:
+                isolation:
+                    thread:
+                        timeoutInMilliseconds: 10000
+
 security:
   ignored: /favicon.ico
+  user:
+      password: none
   basic:
     enabled: false
   oauth2:
@@ -29,8 +46,11 @@ security:
       clientSecret: acmesecret
       scope: openid,read,write
     resource:
-      #token-info-uri: http://localhost:8080/uaa/token_key
-      #jwt.keyUri: http://localhost:8080/uaa/token_key
-      #user-info-uri: http://localhost:8080/uaa/me
-      user-info-uri: //auth-server/uaa/user
-  sessions: never
+      user-info-uri: http://auth-server/uaa/user
+
+zuul:
+  routes:
+    auth:
+      path: /uaa/**
+      url: http://localhost:9999/uaa/
+      sensitive-headers:

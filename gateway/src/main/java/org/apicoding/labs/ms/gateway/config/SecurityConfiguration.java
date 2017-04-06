@@ -16,6 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  */
 @Configuration
 @EnableOAuth2Sso
+// @EnableEurekaClient
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
