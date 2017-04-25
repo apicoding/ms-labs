@@ -25,7 +25,7 @@ module.exports = {
     devServer: {
         inline: true,
         contentBase: './src/',
-        port: 8100,
+        port: 8101,
         proxy: {
             "/api": "http://localhost:8080",
             "/login": "http://localhost:8080",

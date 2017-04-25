@@ -4,6 +4,7 @@ import java.security.KeyPair;
 
 import javax.sql.DataSource;
 
+import org.apicoding.labs.EnableStaksAdmin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.actuate.autoconfigure.ManagementServerProperties;
@@ -43,6 +44,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Controller
 @EnableDiscoveryClient
 @SessionAttributes("authorizationRequest")
+@EnableStaksAdmin
 public class AuthserverApplication extends WebMvcConfigurerAdapter {
 
     public static void main(String[] args) {
@@ -88,8 +90,14 @@ public class AuthserverApplication extends WebMvcConfigurerAdapter {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             // @formatter:off
-            http.formLogin().loginPage("/login").permitAll().and().requestMatchers().antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access").and().authorizeRequests()
-                    .anyRequest().authenticated();
+            http.formLogin().loginPage("/login").permitAll()
+                    .and()
+                        .authorizeRequests()
+                        .antMatchers("/staks").permitAll()
+                        .antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access").authenticated()
+                        .anyRequest().authenticated()
+                    .and()
+                        .logout().logoutSuccessUrl("/").deleteCookies("JSESSIONID");
             // @formatter:on
         }
 

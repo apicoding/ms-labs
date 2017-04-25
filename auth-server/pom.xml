@@ -54,6 +54,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apicoding.labs</groupId>
+            <artifactId>staks-admin</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <!--
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
