@@ -33,9 +33,9 @@
 
    <modules>
         <module>auth-server</module>
-        <module>user-services</module>
         <module>docs-services</module>
         <module>management-portal</module>
+        <module>customer-portal</module>
         <module>gateway</module>
     </modules>
 

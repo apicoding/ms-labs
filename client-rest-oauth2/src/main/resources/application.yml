@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: client-rest-oauth2
+
+security:
+  ignored: /favicon.ico
+  user:
+      password: password
+  basic:
+    enabled: false
+  oauth2:
+    client:
+      accessTokenUri: http://localhost:9999/uaa/oauth/token
+      clientId: rest-client
+      clientSecret: rest-client
+      auto-approve-scopes: '.*'
+    resource:
+      jwt:
+        key-uri: http://localhost:9999/uaa/oauth/token_key
+
+

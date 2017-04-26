@@ -4,9 +4,9 @@ var combineLoaders = require('webpack-combine-loaders');
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-    entry: './src/main.tsx',
+    entry: './src/front/main.tsx',
     output: {
-        path: path.resolve(__dirname, './src/'),
+        path: path.resolve(__dirname, './src/main/resources/static/'),
         filename: 'bundle.js'
     },
 
@@ -24,7 +24,7 @@ module.exports = {
     ],
     devServer: {
         inline: true,
-        contentBase: './src/',
+        contentBase: './src/front/',
         port: 8101,
         proxy: {
             "/api": "http://localhost:8080",

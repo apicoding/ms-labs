@@ -22,7 +22,7 @@ public class ClientApplication {
 
     @Test
     public void home() {
-        DocumentDTO[] result = restTemplate.getForObject("http://localhost:8888/api/document/findall", DocumentDTO[].class);
+        DocumentDTO[] result = restTemplate.getForObject("http://localhost:8888/api/documents/findall", DocumentDTO[].class);
         System.err.println(result);
     }
 
