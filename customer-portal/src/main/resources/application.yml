@@ -1,14 +1,14 @@
 server:
-  port: 8080
+  port: 8081
 
 spring:
   application:
-    name: management-portal
+    name: customer-portal
 
 eureka:
   instance:
     prefer-ip-address: true
-    appname: management-portal
+    appname: customer-portal
     instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}:${random.value}}
     statusPageUrlPath: ${management.context-path}/info
     healthCheckUrlPath: ${management.context-path}/health
@@ -46,8 +46,8 @@ security:
     client:
       accessTokenUri: http://localhost:9999/uaa/oauth/token
       userAuthorizationUri: http://localhost:9999/uaa/oauth/authorize
-      clientId: management-portal
-      clientSecret: management-portal
+      clientId: customer-portal
+      clientSecret: customer-portal
       scope: openid,read,write
     resource:
       user-info-uri: http://auth-server/uaa/user

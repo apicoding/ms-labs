@@ -12,10 +12,10 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
-public class ManagementApplication {
+public class CustomerPortalApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ManagementApplication.class, args);
+        SpringApplication.run(CustomerPortalApplication.class, args);
     }
 
     @Bean
