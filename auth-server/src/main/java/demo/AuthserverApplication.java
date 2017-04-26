@@ -22,6 +22,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -119,6 +120,9 @@ public class AuthserverApplication extends WebMvcConfigurerAdapter {
         @Autowired
         private AuthenticationManager authenticationManager;
 
+        @Autowired
+        private UserDetailsService userDetailService;
+
         @Bean
         public JwtAccessTokenConverter jwtAccessTokenConverter() {
             JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
@@ -144,8 +148,9 @@ public class AuthserverApplication extends WebMvcConfigurerAdapter {
 
         @Override
         public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-            endpoints.authorizationCodeServices(authorizationCodeServices()).authenticationManager(authenticationManager).accessTokenConverter(jwtAccessTokenConverter())
+            endpoints.userDetailsService(userDetailService).authorizationCodeServices(authorizationCodeServices()).authenticationManager(authenticationManager).accessTokenConverter(jwtAccessTokenConverter())
                     .tokenStore(tokenStore()).approvalStoreDisabled();
+
         }
 
         @Override

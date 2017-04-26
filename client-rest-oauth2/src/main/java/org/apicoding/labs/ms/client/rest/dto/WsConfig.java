@@ -36,8 +36,8 @@ public class WsConfig {
         resourceOwner.setClientId("rest-client");
         resourceOwner.setClientSecret("rest-client");
         resourceOwner.setScope(Arrays.asList("read", "write", "openid"));
-        resourceOwner.setPassword("password");
-        resourceOwner.setUsername("user");
+        resourceOwner.setPassword("admin");
+        resourceOwner.setUsername("admin");
         return resourceOwner;
     }
 
