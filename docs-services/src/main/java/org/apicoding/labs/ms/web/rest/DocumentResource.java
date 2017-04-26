@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by Thomas VAUTRIN on 20/10/2016.
  */
 @RestController
-@RequestMapping("/documents")
+@RequestMapping("/api/documents")
 public class DocumentResource {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DocumentResource.class);

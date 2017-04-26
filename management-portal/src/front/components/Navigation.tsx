@@ -38,8 +38,7 @@ export default class Navigation extends React.Component<NavigationProps, Navigat
                 <Link to='/'>Home</Link>&nbsp;
                 { this.state.user.hasAuthority('ADMIN') ? <Link to='/search'>Recherche</Link> : '' }&nbsp;&nbsp;
                 { this.state.user.hasAuthority('ADMIN') ? <Link to='/admin'>Administration</Link> : '' }&nbsp;&nbsp;
-                { this.state.user.authenticated ?  <a href="/logout">({this.state.user.login})&nbsp;Déconnexion</a> :
-                    <a href="/login">Connexion</a> }
+                { this.state.user.authenticated ?  <a href="/logout">({this.state.user.login})&nbsp;Déconnexion</a> : <a href="/login">Connexion</a> }
             </div>
         )
     }

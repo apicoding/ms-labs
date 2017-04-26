@@ -1,8 +1,11 @@
-package org.apicoding.labs.ms.gateway.web.dto;
+package org.apicoding.labs.ms.client.rest.dto;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Created by Thomas VAUTRIN on 20/10/2016.
  */
+@XmlRootElement(name = "DocumentDTO")
 public class DocumentDTO {
 
     private Long id;
@@ -23,8 +26,7 @@ public class DocumentDTO {
     /**
      * Gets the value of the id property.
      *
-     * @return possible object is
-     * {@link Long }
+     * @return possible object is {@link Long }
      */
     public Long getId() {
         return id;
@@ -33,7 +35,8 @@ public class DocumentDTO {
     /**
      * Set the value of the id property.
      *
-     * @param id the new value
+     * @param id
+     *            the new value
      */
     public void setId(Long id) {
         this.id = id;
@@ -42,8 +45,7 @@ public class DocumentDTO {
     /**
      * Gets the value of the firstname property.
      *
-     * @return possible object is
-     * {@link String }
+     * @return possible object is {@link String }
      */
     public String getFirstname() {
         return firstname;
@@ -52,7 +54,8 @@ public class DocumentDTO {
     /**
      * Set the value of the firstname property.
      *
-     * @param firstname the new value
+     * @param firstname
+     *            the new value
      */
     public void setFirstname(String firstname) {
         this.firstname = firstname;
@@ -61,8 +64,7 @@ public class DocumentDTO {
     /**
      * Gets the value of the lastname property.
      *
-     * @return possible object is
-     * {@link String }
+     * @return possible object is {@link String }
      */
     public String getLastname() {
         return lastname;
@@ -71,7 +73,8 @@ public class DocumentDTO {
     /**
      * Set the value of the lastname property.
      *
-     * @param lastname the new value
+     * @param lastname
+     *            the new value
      */
     public void setLastname(String lastname) {
         this.lastname = lastname;
