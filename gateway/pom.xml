@@ -3,16 +3,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.apicoding.labs.ms</groupId>
+    <groupId>tvautrin.labs.microservices</groupId>
     <artifactId>gateway</artifactId>
     <packaging>war</packaging>
 
-    <name>gateway</name>
-    <description>Demo project for Spring Boot</description>
+    <name>Labs :: Microservices :: Gateway</name>
+    <description>Labs :: Microservices :: Gateway</description>
 
     <parent>
-        <groupId>org.apicoding.labs.ms</groupId>
-        <artifactId>ms-labs-parent</artifactId>
+        <groupId>tvautrin.labs.microservices</groupId>
+        <artifactId>parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
@@ -112,27 +112,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-hystrix</artifactId>
         </dependency>
-       <!-- <dependency>
-            <groupId>com.netflix.feign</groupId>
-            <artifactId>feign-core</artifactId>
-            <version>8.18.0</version>
-        </dependency>-->
-        <!--<dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-netflix-core</artifactId>
-        </dependency>
-        -->
-
-        <!--<dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-commons</artifactId>
-            <version>1.1.8.RELEASE</version>
-        </dependency>-->
-        <!--<dependency>
-            <groupId>com.netflix.ribbon</groupId>
-            <artifactId>ribbon-eureka</artifactId>
-            <version>2.2.2</version>
-        </dependency>-->
         <!--Security -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -142,9 +121,20 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+        <!-- Utilisation d'Undertow -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -276,7 +266,7 @@
                             <apiSources>
                                 <apiSource>
                                     <springmvc>false</springmvc>
-                                    <locations>org.apicoding.labs.ms.gateway.web.rest</locations>
+                                    <locations>tvautrin.labs.microservices.gateway.web.rest</locations>
                                     <schemes>
                                         <scheme>http</scheme>
                                         <scheme>https</scheme>

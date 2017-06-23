@@ -3,16 +3,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.apicoding.labs.ms</groupId>
+    <groupId>tvautrin.labs.microservices</groupId>
     <artifactId>customer-portal</artifactId>
     <packaging>war</packaging>
 
-    <name>customer-portal</name>
-    <description>Demo project for Spring Boot</description>
+    <name>Labs :: Microservices :: Customer Portal</name>
+    <description>Labs :: Microservices :: Customer Portal</description>
 
     <parent>
-        <groupId>org.apicoding.labs.ms</groupId>
-        <artifactId>ms-labs-parent</artifactId>
+        <groupId>tvautrin.labs.microservices</groupId>
+        <artifactId>parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
@@ -276,7 +276,7 @@
                             <apiSources>
                                 <apiSource>
                                     <springmvc>false</springmvc>
-                                    <locations>org.apicoding.labs.ms.gateway.web.rest</locations>
+                                    <locations>tvautrin.labs.microservices.gateway.web.rest</locations>
                                     <schemes>
                                         <scheme>http</scheme>
                                         <scheme>https</scheme>

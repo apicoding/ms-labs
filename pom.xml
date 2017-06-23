@@ -3,18 +3,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.apicoding.labs.ms</groupId>
-    <artifactId>ms-labs-parent</artifactId>
+    <groupId>tvautrin.labs.microservices</groupId>
+    <artifactId>parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>ms-labs</name>
-    <description>Demo project for Spring Boot Microservice</description>
+    <name>Labs :: Microservices :: Parent</name>
+    <description>Labs :: Microservices :: Parent</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.4.1.RELEASE</version>
-        <!--<version>1.5.2.RELEASE</version>-->
+        <version>1.5.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -22,7 +21,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-
+        <spring-cloud.version>Dalston.SR1</spring-cloud.version>
         <javax.inject.version>1</javax.inject.version>
 
         <springfox-version>2.6.0</springfox-version>
@@ -33,8 +32,9 @@
 
    <modules>
         <module>auth-server</module>
+        <module>client-rest-oauth2</module>
+        <module>registry</module>
         <module>docs-services</module>
-        <module>management-portal</module>
         <module>customer-portal</module>
         <module>gateway</module>
     </modules>
@@ -42,18 +42,9 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>io.pivotal.spring.cloud</groupId>
-                <artifactId>spring-cloud-services-dependencies</artifactId>
-                <!--<version>1.4.1.RELEASE</version>-->
-                <version>1.2.0</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Camden.SR1</version>
-                <!--<version>Camden.SR6</version>-->
+                <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
