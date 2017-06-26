@@ -1,11 +1,7 @@
-server.port: 9999
+server.port: ${SERVICE_PORT:9999}
 server.contextPath: /uaa
 security.user.password: password
-logging.level.org.springframework.security: DEBUG
 
-spring:
-  application:
-    name: auth-server
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 10

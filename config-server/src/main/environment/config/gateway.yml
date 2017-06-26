@@ -1,13 +1,7 @@
-logging:
-  level:
-    org.springframework.boot.actuate.audit.listener.AuditListener: DEBUG
-
 server:
-  port: 8888
-
-spring:
-  application:
-    name: gateway
+  port: ${SERVICE_PORT:8888}
+  undertow:
+        buffer-size: 16000
 
 eureka:
   instance:
@@ -26,19 +20,6 @@ eureka:
 ribbon:
     eureka:
         enabled: true
-
-# See https://github.com/Netflix/Hystrix/wiki/Configuration
-hystrix:
-    command:
-        default:
-            execution:
-                isolation:
-                    thread:
-                        timeoutInMilliseconds: 10000
-
-feign:
-  hystrix:
-     enabled: false
 
 security:
   oauth2:

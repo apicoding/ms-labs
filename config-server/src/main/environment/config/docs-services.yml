@@ -1,9 +1,8 @@
 server:
-  port: 8181
+  port: ${SERVICE_PORT:8181}
 
-spring:
-  application:
-    name: document-services
+undertow:
+    buffer-size: 16000
 
 eureka:
   instance:
@@ -13,12 +12,6 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
-
-
-logging:
-  level:
-    org.springframework: DEBUG
-
 
 security:
   oauth2:
