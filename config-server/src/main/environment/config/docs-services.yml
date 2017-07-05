@@ -4,6 +4,8 @@ server:
 undertow:
     buffer-size: 16000
 
+management.security.enabled: false
+
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 10
@@ -23,3 +25,4 @@ security:
 
   basic:
     enabled: false
+

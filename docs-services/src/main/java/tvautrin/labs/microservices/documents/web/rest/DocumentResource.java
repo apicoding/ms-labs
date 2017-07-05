@@ -28,7 +28,7 @@ public class DocumentResource {
     @RequestMapping(value = "/findall", produces = "application/json")
     @ResponseBody
     // @PreAuthorize("#oauth2.hasScope('openid') and hasRole('USER')")
-    //@HystrixCommand
+    @HystrixCommand
     public List<Document> findAll(Principal principal) {
         LOGGER.info("Récupération des documents demandée par {}", principal.getName());
         return userService.findAll();

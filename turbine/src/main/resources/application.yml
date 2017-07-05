@@ -1,8 +1,7 @@
 server:
-  port: ${SERVICE_PORT:9876}
+  port: ${SERVICE_PORT:8989}
   undertow:
         buffer-size: 16000
-
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 10
@@ -11,3 +10,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+
+spring:
+  application:
+    name: turbine
