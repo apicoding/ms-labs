@@ -28,15 +28,12 @@ public class DocumentResource {
     @Autowired
     private DocumentService userService;
 
-    @Value("${message.greeting:default}")
-    String greeting;
-
     @RequestMapping(value = "/findall", produces = "application/json")
     @ResponseBody
     // @PreAuthorize("#oauth2.hasScope('openid') and hasRole('USER')")
     @HystrixCommand
     public List<Document> findAll(Principal principal) {
-        LOGGER.info("Récupération des documents demandée par {} {}", principal.getName(), greeting);
+        LOGGER.info("Récupération des documents demandée par {}", principal.getName());
         return userService.findAll();
     }
 
