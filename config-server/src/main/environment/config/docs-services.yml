@@ -6,9 +6,18 @@ undertow:
 
 management.security.enabled: false
 
+message.greeting: Bonjour2
+
+spring:
+  rabbitmq:
+      addresses: 192.168.99.100
+      port: 5672
+      username: guest
+      password: guest
+
 eureka:
   instance:
-    leaseRenewalIntervalInSeconds: 10
+    leaseRenewalIntervalInSeconds: 7
     metadataMap:
       instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}:${random.value}}
   client:
@@ -25,4 +34,3 @@ security:
 
   basic:
     enabled: false
-
