@@ -3,6 +3,7 @@ package tvautrin.labs.microservices.documents.web.rest;
 import java.security.Principal;
 import java.util.List;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import tvautrin.labs.microservices.documents.domain.Document;
 import tvautrin.labs.microservices.documents.services.DocumentService;
 import org.slf4j.Logger;
@@ -27,6 +28,7 @@ public class DocumentResource {
     @RequestMapping(value = "/findall", produces = "application/json")
     @ResponseBody
     // @PreAuthorize("#oauth2.hasScope('openid') and hasRole('USER')")
+    //@HystrixCommand
     public List<Document> findAll(Principal principal) {
         LOGGER.info("Récupération des documents demandée par {}", principal.getName());
         return userService.findAll();

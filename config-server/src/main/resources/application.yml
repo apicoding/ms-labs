@@ -17,8 +17,6 @@ spring:
 management:
   security:
     enabled: false
-logging:
-  level.org.springframework: debug
 
 eureka:
   instance:

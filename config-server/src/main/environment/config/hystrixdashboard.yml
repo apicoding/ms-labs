@@ -1,0 +1,19 @@
+server:
+  port: ${SERVICE_PORT:9876}
+  undertow:
+        buffer-size: 16000
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    appname: hystrix-dashboard
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}:${random.value}}
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+    leaseRenewalIntervalInSeconds: 2
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}:${random.value}}
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+

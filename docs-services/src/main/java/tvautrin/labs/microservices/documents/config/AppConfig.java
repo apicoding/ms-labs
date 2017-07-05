@@ -1,5 +1,6 @@
 package tvautrin.labs.microservices.documents.config;
 
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -8,5 +9,6 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ComponentScan("tvautrin.labs.microservices")
+//@EnableCircuitBreaker
 public class AppConfig {
 }

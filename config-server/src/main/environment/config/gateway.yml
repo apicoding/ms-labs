@@ -5,21 +5,13 @@ server:
 
 eureka:
   instance:
-    prefer-ip-address: true
-    appname: gateway
-    instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}:${random.value}}
-    statusPageUrlPath: ${management.context-path}/info
-    healthCheckUrlPath: ${management.context-path}/health
-    leaseRenewalIntervalInSeconds: 2
-    metadataMap:
-      instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}:${random.value}}
+    registryFetchIntervalSeconds: 1
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
-
-ribbon:
-    eureka:
-        enabled: true
+    registerWithEureka: true
 
 security:
   oauth2:
@@ -38,8 +30,16 @@ zuul:
   routes:
     document:
       path: /api/documents/**
-      url: http://localhost:8181/api/documents/
+      serviceId: docs-services
+      stripPrefix: false
+      sensitiveHeaders: '*'
     user:
       path: /user/**
-      url: http://localhost:9999/uaa/user
+      serviceId: auth-server
+      stripPrefix: false
+      sensitiveHeaders: '*'
 
+
+ribbon:
+    eureka:
+        enabled: true
