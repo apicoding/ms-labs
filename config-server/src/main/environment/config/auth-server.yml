@@ -1,0 +1,13 @@
+server.port: ${SERVICE_PORT:9999}
+server.contextPath: /uaa
+security.user.password: password
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}:${random.value}}
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
