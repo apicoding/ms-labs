@@ -1,6 +1,8 @@
 **Exemple de microservice**
 
-Pour utiliser la démo avec le rechargement de la conguration, vous avez besoin de rabbitMQ,
+- Pour l'authentification, le script SQL est disponible dans le module auth-server.
+
+- Pour utiliser la démo avec le rechargement de la configuration, vous avez besoin de rabbitMQ,
  
 Pour celà, utilisez docker et démarrer la commande suivante :
 
@@ -9,7 +11,7 @@ docker run -d --hostname my-rabbit --name some-rabbit -p 15672:15672 -p4369:4369
 ```
 
 
-Pour recharger la configuration :
+- Pour recharger la configuration :
 
 curl http://localhost:11111/monitor -d path="*"
 
