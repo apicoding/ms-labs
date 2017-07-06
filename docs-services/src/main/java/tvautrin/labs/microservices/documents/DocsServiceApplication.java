@@ -12,6 +12,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @EnableDiscoveryClient
 @EnableResourceServer
 @EnableHystrix
+@EnableTurbine
 @EnableAutoConfiguration
 public class DocsServiceApplication {
 

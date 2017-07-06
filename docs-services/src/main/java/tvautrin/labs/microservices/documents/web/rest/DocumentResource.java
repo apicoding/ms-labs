@@ -3,17 +3,18 @@ package tvautrin.labs.microservices.documents.web.rest;
 import java.security.Principal;
 import java.util.List;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
-import tvautrin.labs.microservices.documents.domain.Document;
-import tvautrin.labs.microservices.documents.services.DocumentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
+import tvautrin.labs.microservices.documents.domain.Document;
+import tvautrin.labs.microservices.documents.services.DocumentService;
 
 /**
  * Created by Thomas VAUTRIN on 20/10/2016.

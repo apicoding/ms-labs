@@ -23,10 +23,10 @@ public class ClientApplication {
 
     @Test
     public void home() {
-        //for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 100; i++) {
             DocumentDTO[] result = restTemplate.getForObject("http://localhost:8888/api/documents/findall", DocumentDTO[].class);
             System.err.println(result);
-        //}
+        }
     }
 
 }

@@ -1,12 +1,21 @@
+info:
+  component: Turbine
+
+PREFIX:
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+
 server:
-  port: ${SERVICE_PORT:8989}
+  port: ${SERVICE_PORT:8990}
   undertow:
         buffer-size: 16000
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 10
-    metadataMap:
-      instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}:${random.value}}
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
@@ -14,4 +23,19 @@ eureka:
 spring:
   application:
     name: turbine
+  rabbitmq:
+        addresses: 192.168.99.100
+        port: 5672
+        username: guest
+        password: guest
+
+logging:
+  level:
+    root: INFO
+    #com.netflix.discovery: TRACE
+    org.springframework.cloud.netflix.turbine: TRACE
+
+turbine:
+  stream:
+    port: 8989
 
